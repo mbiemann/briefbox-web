@@ -1,0 +1,52 @@
+<div class="auth">
+    <h1>
+        Brief Box
+    </h1>
+    <div>
+        <mat-form-field>
+            <mat-label>Email or SMS</mat-label>
+            <input matInput [disabled]="codeSent" (input)="validateInput()" [(ngModel)]="input">
+            <button *ngIf="input&&!codeSent" matSuffix mat-icon-button aria-label="Clear" (click)="input='';inputValid=false">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div *ngIf="!codeSent">
+        <button mat-raised-button color="primary" [disabled]="!inputValid" (click)="continueInput()">
+            <mat-icon>done</mat-icon>
+            Continue
+        </button>
+    </div>
+    <div *ngIf="codeSent">
+        <div>
+            <mat-form-field>
+                <mat-label>Code</mat-label>
+                <input matInput placeholder="000000" (input)="validateCode()" [(ngModel)]="code">
+                <button *ngIf="code" matSuffix mat-icon-button aria-label="Clear" (click)="code='';validateCode()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div *ngIf="error">
+            <mat-error>Code is invalid.</mat-error>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" (click)="continueCode()" [disabled]="!codeValid||error">
+                <mat-icon>done</mat-icon>
+                Continue
+            </button>
+        </div>
+        <div>
+            <button mat-raised-button (click)="startAgain()">
+                <mat-icon>restart_alt</mat-icon>
+                Start again
+            </button>
+        </div>
+    </div>
+    <div>
+        <button mat-raised-button>
+            <mat-icon>help</mat-icon>
+            Help
+        </button>
+    </div>
+</div>
