@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - shell: bash
-        run: ng build -c development
+        run: ng build -c production
 
       - uses: actions/setup-python@v4.5.0
         with:
