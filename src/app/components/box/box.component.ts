@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-box',
@@ -10,7 +12,9 @@ export class BoxComponent implements OnInit {
   box_id: string | undefined;
 
   constructor(
-    private route: ActivatedRoute
+    protected backend: BackendService,
+    protected router: Router,
+    protected route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

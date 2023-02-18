@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from "@angular/material/grid-list"
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
-import { HomeComponent } from './home/home.component';
-import { BoxComponent } from './box/box.component';
+import { AppComponent } from './components/app.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { HomeComponent } from './components/home/home.component';
+import { BoxComponent } from './components/box/box.component';
+
 
 @NgModule({
   declarations: [
@@ -29,12 +30,13 @@ import { BoxComponent } from './box/box.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
     // Material
     MatButtonModule,
-    MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
