@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Material
 import { MatButtonModule } from '@angular/material/button';
@@ -15,15 +15,10 @@ import { AppComponent } from './components/app.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { HomeComponent } from './components/home/home.component';
 import { BoxComponent } from './components/box/box.component';
+import { HttpInterceptorService } from './services/http-interceptor.service';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AuthComponent,
-    HomeComponent,
-    BoxComponent
-  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,7 +33,21 @@ import { BoxComponent } from './components/box/box.component';
     MatInputModule,
     MatProgressSpinnerModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    AuthComponent,
+    HomeComponent,
+    BoxComponent,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [
+    AppComponent,
+  ],
 })
 export class AppModule { }

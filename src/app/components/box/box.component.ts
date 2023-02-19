@@ -9,15 +9,18 @@ import { BackendService } from '../../services/backend.service';
   styleUrls: ['./box.component.scss']
 })
 export class BoxComponent implements OnInit {
-  box_id: string | undefined;
+  box_id: string = 'abc123';
+  message: string = 'loading...';
 
   constructor(
     protected backend: BackendService,
     protected router: Router,
-    protected route: ActivatedRoute
+    protected route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
     this.box_id = String(this.route.snapshot.paramMap.get('id'));
+    this.backend.helloWorld(value => this.message = value);
   }
+  
 }

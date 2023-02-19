@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { BackendService, TokenResponse } from '../../services/backend.service';
+import { AuthService, ResponseAuthToken } from '../../services/auth.service';
 
 
 @Component({
@@ -20,11 +20,11 @@ export class AuthComponent {
   codeError: boolean = false;
 
   constructor(
-    private backend: BackendService,
+    private auth: AuthService,
     private router: Router,
   ) {
-    if (this.backend.auth) {
-      this.router.navigate(['']);
+    if (!this.auth.redirected && this.auth.isAuth()) {
+      this.router.navigateByUrl('');
     } else {
       this.inputValid = false;
       this.startAgain();
@@ -38,17 +38,15 @@ export class AuthComponent {
 
   continueInput() {
     this.sending = true;
-    this.backend.authCode(
+    this.auth.authCode(
       'email',
       this.input,
       (value: Object) => {
-        console.log(value);
         this.codeSent = true;
         this.inputError = false;
         this.sending = false;
       },
       (err: any) => {
-        console.log(err);
         this.codeSent = false;
         this.inputError = true;
         this.sending = false;
@@ -64,19 +62,15 @@ export class AuthComponent {
 
   continueCode() {
     this.sending = true;
-    this.backend.authToken(
+    this.auth.authToken(
       'email',
       this.input,
       this.code,
-      (value: TokenResponse) => {
-        console.log(value);
-        this.backend.setToken(value.access_token)
-        this.router.navigateByUrl(this.backend.authUrl);
-        this.backend.authUrl = '';
+      (value: ResponseAuthToken) => {
+        this.auth.login(value.access_token)
         this.sending = false;
       },
       (err: any) => {
-        console.log(err);
         this.codeError = true;
         this.sending = false;
       }
