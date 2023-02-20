@@ -1,17 +1,46 @@
-<p>{{ message }}</p>
+<app-toolbar></app-toolbar>
 
-<p>
-    <button (click)="router.navigate(['/auth'])">/auth</button>
-</p>
-<p>
-    <button (click)="router.navigate(['/box123'])">/box123</button>
-</p>
-<p>
-    <button (click)="router.navigate(['/box987'])">/box987</button>
-</p>
-<p>
-    <button (click)="router.navigate(['/error/error'])">/error/error</button>
-</p>
-<p>
-    <button (click)="auth.logout()">Logout</button>
-</p>
+<mat-grid-list cols="3" rowHeight="200px">
+
+    <mat-grid-tile *ngFor="let box of boxes">
+        <mat-card>
+            <mat-card-content>
+                <a mat-stroked-button class="open-box text-center mb10" color="primary" href="/{{box.name}}">
+                    {{ box.public ? 'public' : 'private' }} box<br>
+                    {{box.name}}
+                </a>
+                <div class="text-right">
+                    <button mat-flat-button [hidden]="showDatetime" (click)="showDatetime=!showDatetime">
+                        {{box.left}} left
+                    </button>
+                    <button mat-flat-button [hidden]="!showDatetime" (click)="showDatetime=!showDatetime">
+                        {{box.created}}
+                    </button>
+                </div>
+                <mat-progress-bar class="mb10" color="accent" mode="determinate" [value]="box.progress"></mat-progress-bar>
+                <div class="text-center">
+                    <button mat-raised-button [hidden]="box.public" (click)="box.public=!box.public">
+                        Share
+                    </button>
+                    <button mat-raised-button [hidden]="!box.public" (click)="box.public=!box.public">
+                        Unshare
+                    </button>
+                    <button mat-raised-button class="ml5" (click)="deleteBox(box.name)">
+                        Delete
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-content>
+                <button mat-stroked-button class="new-box" (click)="newBox()">
+                    new
+                </button>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+</mat-grid-list>

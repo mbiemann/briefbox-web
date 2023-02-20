@@ -32,7 +32,7 @@ export class AuthComponent {
   }
 
   validateInput() {
-    this.inputValid = (this.input!='');
+    this.inputValid = (this.input != '');
     this.inputError = false;
   }
 

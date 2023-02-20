@@ -16,11 +16,11 @@ export class BoxComponent implements OnInit {
     protected backend: BackendService,
     protected router: Router,
     protected route: ActivatedRoute,
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.box_id = String(this.route.snapshot.paramMap.get('id'));
     this.backend.helloWorld(value => this.message = value);
   }
-  
+
 }

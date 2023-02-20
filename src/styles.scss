@@ -10,3 +10,27 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: #323232;
 }
+
+.ml1 {margin-left: 1px;}
+.ml5 {margin-left: 5px;}
+
+.mb1 {margin-bottom: 1px;}
+.mb5 {margin-bottom: 5px;}
+.mb10 {margin-bottom: 10px;}
+
+.text-center {
+    width: inherit;
+    text-align: center;
+}
+.text-left {
+    width: inherit;
+    text-align: left;
+}
+.text-right {
+    width: inherit;
+    text-align: right;
+}
+
+.w100 {
+    width: 100%!important;
+}
