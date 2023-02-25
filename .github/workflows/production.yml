@@ -21,16 +21,13 @@ jobs:
 
       - uses: actions/setup-node@v3.6.0
         with:
-          node-version: '18.13.0'
-
-      - shell: bash
-        run: npm install -g -u aws-cdk@2.61.1 @angular/cli@15.1.2
+          node-version: '18.14.2'
 
       - shell: bash
         run: npm install
 
       - shell: bash
-        run: ng build -c production
+        run: npm run build
 
       - uses: actions/setup-python@v4.5.0
         with:
@@ -43,4 +40,4 @@ jobs:
         run: .venv/bin/pip install -r requirements.txt
 
       - shell: bash
-        run: cdk deploy
+        run: node_modules/aws-cdk/bin/cdk deploy

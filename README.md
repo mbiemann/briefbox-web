@@ -1,36 +1,40 @@
 # Brief Box Web Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Development
 
-First steps:
+### Prerequeriments
+
+* Node version v18.14.2 (use nvm to handle many versions)
+* Python version 3.10.3 (use pyenv to handle many versions)
+
+### First steps
 
 ```
-$ nvm use 18.12.1
+$ nvm install v18.14.2
+$ nvm use v18.14.2
 $ npm install
-$ ng serve
+$ npm start
 ```
 
-Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-To install CDK:
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-```
-$ nvm use 18.12.1
-$ npm install -g aws-cdk@2.63.0
-```
-
-To create Python Virtual Environment:
+### To create Python Virtual Environment
 
 ```
-$ pyenv install 3.10.3
+$ pyenv install -s 3.10.3
+$ pyenv local 3.10.3
 $ pyenv exec python -m venv .venv
 $ .venv/bin/pip install -r requirements.txt
 ```
 
-Useful commands:
+### Useful commands
 
- * `ng build -c development` build the project in the `dist/` directory
- * `cdk diff` compare deployed stack with current state
- * `cdk deploy` deploy this stack to your default AWS account/region
+ * `npm run build` build the project in the `build/` directory
+ * `node_modules/aws-cdk/bin/cdk diff` compare deployed stack with current state
+ * `node_modules/aws-cdk/bin/cdk deploy` deploy this stack to your default AWS account/region

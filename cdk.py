@@ -24,7 +24,7 @@ BucketDeployment(
     id="deploy-dist",
     destination_bucket=bucket,
     sources=[
-        Source.asset("./dist/briefbox-web"),
+        Source.asset("./build"),
     ],
     access_control=BucketAccessControl.PUBLIC_READ,
 )
