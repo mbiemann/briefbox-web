@@ -6,7 +6,7 @@ import { Footer } from '../components/footer';
 function File(file) {
   return (
     <li className="list-group-item bg-dark text-light d-flex align-items-center justify-content-between">
-      <a href="#">
+      <a href="https://www.google.com">
         <i className="bi bi-file-earmark-arrow-down"></i> {file.filename}
       </a>
       <div>
